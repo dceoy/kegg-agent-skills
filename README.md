@@ -24,17 +24,18 @@ Supports all 7 KEGG REST API operations:
 ## Structure
 
 ```
-kegg-api/
-├── SKILL.md                       # Skill definition and instructions
-├── scripts/
-│   └── kegg_fetch.sh              # Helper script for API calls
-└── references/
-    └── api-reference.md           # Full API reference documentation
+skills/
+└── kegg-api/
+    ├── SKILL.md                   # Skill definition and instructions
+    ├── scripts/
+    │   └── kegg_fetch.sh          # Helper script for API calls
+    └── references/
+        └── api-reference.md       # Full API reference documentation
 ```
 
 ## Usage
 
-Install as a Claude Agent Skill and use natural language to query KEGG, e.g.:
+Install `skills/kegg-api` as an Agent Skill and use natural language to query KEGG, e.g.:
 
 - "Find human pathways related to cancer"
 - "Get the amino acid sequence for gene hsa:10458"
