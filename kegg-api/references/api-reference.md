@@ -10,66 +10,67 @@ Access restriction: Academic use only.
 
 ### Internal Databases
 
-| Database | Content |
-|---|---|
-| `pathway` | KEGG pathway maps |
-| `brite` | BRITE functional hierarchies |
-| `module` | KEGG modules |
-| `ko` | KEGG Orthology |
-| `<org>` | Genes for a specific organism (3/4-letter code, e.g., `hsa` for human, `eco` for E. coli) |
-| `vg` | Viral genes |
-| `vp` | Viral proteins |
-| `ag` | Addendum genes |
-| `genome` | KEGG genome |
-| `compound` | Chemical compounds |
-| `glycan` | Glycans |
-| `reaction` | Biochemical reactions |
-| `rclass` | Reaction classes |
-| `enzyme` | Enzyme nomenclature |
-| `network` | Disease/drug network |
-| `variant` | Human gene variants |
-| `disease` | Human diseases |
-| `drug` | Drugs |
-| `dgroup` | Drug groups |
+| Database   | Content                                                                                   |
+| ---------- | ----------------------------------------------------------------------------------------- |
+| `pathway`  | KEGG pathway maps                                                                         |
+| `brite`    | BRITE functional hierarchies                                                              |
+| `module`   | KEGG modules                                                                              |
+| `ko`       | KEGG Orthology                                                                            |
+| `<org>`    | Genes for a specific organism (3/4-letter code, e.g., `hsa` for human, `eco` for E. coli) |
+| `vg`       | Viral genes                                                                               |
+| `vp`       | Viral proteins                                                                            |
+| `ag`       | Addendum genes                                                                            |
+| `genome`   | KEGG genome                                                                               |
+| `compound` | Chemical compounds                                                                        |
+| `glycan`   | Glycans                                                                                   |
+| `reaction` | Biochemical reactions                                                                     |
+| `rclass`   | Reaction classes                                                                          |
+| `enzyme`   | Enzyme nomenclature                                                                       |
+| `network`  | Disease/drug network                                                                      |
+| `variant`  | Human gene variants                                                                       |
+| `disease`  | Human diseases                                                                            |
+| `drug`     | Drugs                                                                                     |
+| `dgroup`   | Drug groups                                                                               |
 
 Composite databases:
+
 - `genes` = all organism gene databases (`<org>`, `vg`, `vp`, `ag`)
 - `ligand` = chemical databases (`compound`, `glycan`, `reaction`, `enzyme`)
 - `kegg` = all databases
 
 ### Outside Databases (for conv/link)
 
-| Database | Used in |
-|---|---|
-| `ncbi-geneid` | conv, link |
+| Database         | Used in    |
+| ---------------- | ---------- |
+| `ncbi-geneid`    | conv, link |
 | `ncbi-proteinid` | conv, link |
-| `uniprot` | conv, link |
-| `pubchem` | conv, link |
-| `chebi` | conv, link |
-| `pubmed` | link only |
-| `atc` | link only |
-| `jtc` | link only |
-| `ndc` | link, ddi |
-| `yj` | link, ddi |
-| `yk` | link only |
+| `uniprot`        | conv, link |
+| `pubchem`        | conv, link |
+| `chebi`          | conv, link |
+| `pubmed`         | link only  |
+| `atc`            | link only  |
+| `jtc`            | link only  |
+| `ndc`            | link, ddi  |
+| `yj`             | link, ddi  |
+| `yk`             | link only  |
 
 ## Entry Identifier Formats
 
-| Format | Example | Description |
-|---|---|---|
-| `<org>:<gene>` | `hsa:10458` | Gene in an organism |
-| `map<number>` | `map00010` | Reference pathway |
-| `<org><number>` | `hsa00010` | Organism-specific pathway |
-| `ko:<id>` | `ko:K00001` | KEGG Orthology |
-| `ec:<id>` | `ec:1.1.1.1` | Enzyme |
-| `rn:<id>` | `rn:R00001` | Reaction |
-| `C<number>` | `C00001` | Compound |
-| `G<number>` | `G00001` | Glycan |
-| `D<number>` | `D00001` | Drug |
-| `H<number>` | `H00001` | Disease |
-| `br:<id>` | `br:ko00001` | BRITE hierarchy |
-| `md:<id>` | `md:hsa_M00002` | Module |
-| `T<number>` | `T01001` | Genome |
+| Format          | Example         | Description               |
+| --------------- | --------------- | ------------------------- |
+| `<org>:<gene>`  | `hsa:10458`     | Gene in an organism       |
+| `map<number>`   | `map00010`      | Reference pathway         |
+| `<org><number>` | `hsa00010`      | Organism-specific pathway |
+| `ko:<id>`       | `ko:K00001`     | KEGG Orthology            |
+| `ec:<id>`       | `ec:1.1.1.1`    | Enzyme                    |
+| `rn:<id>`       | `rn:R00001`     | Reaction                  |
+| `C<number>`     | `C00001`        | Compound                  |
+| `G<number>`     | `G00001`        | Glycan                    |
+| `D<number>`     | `D00001`        | Drug                      |
+| `H<number>`     | `H00001`        | Disease                   |
+| `br:<id>`       | `br:ko00001`    | BRITE hierarchy           |
+| `md:<id>`       | `md:hsa_M00002` | Module                    |
+| `T<number>`     | `T01001`        | Genome                    |
 
 Multiple entries: join with `+` (e.g., `hsa:10458+ece:Z5100`).
 
@@ -84,6 +85,7 @@ Multiple entries: join with `+` (e.g., `hsa:10458+ece:Z5100`).
 `<database>` = `kegg | pathway | brite | module | ko | genes | <org> | vg | vp | ag | genome | ligand | compound | glycan | reaction | rclass | enzyme | network | variant | disease | drug | dgroup`
 
 Examples:
+
 ```
 /info/kegg
 /info/pathway
@@ -104,6 +106,7 @@ The special database name `organism` is allowed only in this operation.
 `<database>/<org>` form is used for `pathway` and `module` only.
 
 Examples:
+
 ```
 /list/pathway
 /list/pathway/hsa
@@ -133,6 +136,7 @@ Note: `brite` is not supported.
 - `mol_weight`: molecular weight search; range with `-` (e.g., `300-310`)
 
 Examples:
+
 ```
 /find/compound/sugar
 /find/compound/C7H10O5/formula
@@ -153,19 +157,20 @@ Input limit: up to 10 entries. For `image`/`kgml`: 1 entry only.
 
 `<option>`:
 
-| Option | Applicable to | Description |
-|---|---|---|
-| `aaseq` | genes | Amino acid sequence (FASTA) |
-| `ntseq` | genes | Nucleotide sequence (FASTA) |
-| `mol` | compound, glycan, drug | MOL format structure |
-| `kcf` | compound, glycan, drug | KCF format structure |
-| `image` | compound, glycan, drug, pathway | PNG image |
-| `conf` | compound, glycan, drug | Configuration data |
-| `kgml` | pathway | KEGG Markup Language XML |
-| `json` | pathway | JSON format |
-| *(none)* | all except brite | Flat file |
+| Option   | Applicable to                   | Description                 |
+| -------- | ------------------------------- | --------------------------- |
+| `aaseq`  | genes                           | Amino acid sequence (FASTA) |
+| `ntseq`  | genes                           | Nucleotide sequence (FASTA) |
+| `mol`    | compound, glycan, drug          | MOL format structure        |
+| `kcf`    | compound, glycan, drug          | KCF format structure        |
+| `image`  | compound, glycan, drug, pathway | PNG image                   |
+| `conf`   | compound, glycan, drug          | Configuration data          |
+| `kgml`   | pathway                         | KEGG Markup Language XML    |
+| `json`   | pathway                         | JSON format                 |
+| _(none)_ | all except brite                | Flat file                   |
 
 Examples:
+
 ```
 /get/hsa:10458+ece:Z5100
 /get/hsa:10458/aaseq
@@ -194,6 +199,7 @@ Chemical identifiers: `compound | glycan | drug` ↔ `pubchem | chebi`
 `<option>` = `turtle | n-triple` (RDF output)
 
 Examples:
+
 ```
 /conv/eco/ncbi-geneid
 /conv/ncbi-geneid/eco
@@ -217,6 +223,7 @@ Examples:
 `<option>` = `turtle | n-triple` (RDF output)
 
 Examples:
+
 ```
 /link/pathway/hsa
 /link/pathway/hsa:10458+ece:Z5100
@@ -243,6 +250,7 @@ Multiple entries (joined with `+`): checks interactions between given drugs.
 Contains CI (contraindication) and P (precaution) interactions.
 
 Examples:
+
 ```
 /ddi/D00564
 /ddi/D00564+D00123

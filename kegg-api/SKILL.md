@@ -43,15 +43,15 @@ scripts/kegg_fetch.sh ddi D00564+D00123
 
 ## Operations Summary
 
-| Operation | Purpose | Pattern |
-|---|---|---|
-| `info` | Database release info | `info <database>` |
-| `list` | List entries | `list <database> [org]` or `list <entries>` |
-| `find` | Search by keyword/property | `find <database> <query> [option]` |
-| `get` | Retrieve entry data | `get <entries> [option]` |
-| `conv` | Convert identifiers | `conv <target> <source>` |
-| `link` | Cross-references | `link <target> <source>` |
-| `ddi` | Drug-drug interactions | `ddi <entries>` |
+| Operation | Purpose                    | Pattern                                     |
+| --------- | -------------------------- | ------------------------------------------- |
+| `info`    | Database release info      | `info <database>`                           |
+| `list`    | List entries               | `list <database> [org]` or `list <entries>` |
+| `find`    | Search by keyword/property | `find <database> <query> [option]`          |
+| `get`     | Retrieve entry data        | `get <entries> [option]`                    |
+| `conv`    | Convert identifiers        | `conv <target> <source>`                    |
+| `link`    | Cross-references           | `link <target> <source>`                    |
+| `ddi`     | Drug-drug interactions     | `ddi <entries>`                             |
 
 ## Common Databases
 
@@ -77,28 +77,29 @@ scripts/kegg_fetch.sh ddi D00564+D00123
 
 ## get Options
 
-| Option | For | Returns |
-|---|---|---|
-| `aaseq` | genes | Amino acid FASTA |
-| `ntseq` | genes | Nucleotide FASTA |
-| `mol` | compound/glycan/drug | MOL structure |
-| `kcf` | compound/glycan/drug | KCF structure |
-| `image` | compound/glycan/drug/pathway | PNG (1 entry only) |
-| `kgml` | pathway | KEGG XML (1 entry only) |
-| `json` | pathway | JSON (1 entry only) |
-| *(none)* | all | Flat file |
+| Option   | For                          | Returns                 |
+| -------- | ---------------------------- | ----------------------- |
+| `aaseq`  | genes                        | Amino acid FASTA        |
+| `ntseq`  | genes                        | Nucleotide FASTA        |
+| `mol`    | compound/glycan/drug         | MOL structure           |
+| `kcf`    | compound/glycan/drug         | KCF structure           |
+| `image`  | compound/glycan/drug/pathway | PNG (1 entry only)      |
+| `kgml`   | pathway                      | KEGG XML (1 entry only) |
+| `json`   | pathway                      | JSON (1 entry only)     |
+| _(none)_ | all                          | Flat file               |
 
 ## find Options (compound/drug only)
 
-| Option | Description |
-|---|---|
-| `formula` | Chemical formula (partial match, e.g., `C7H10O5`) |
+| Option       | Description                                        |
+| ------------ | -------------------------------------------------- |
+| `formula`    | Chemical formula (partial match, e.g., `C7H10O5`)  |
 | `exact_mass` | Exact mass, range with `-` (e.g., `174.05-174.06`) |
 | `mol_weight` | Molecular weight, range with `-` (e.g., `300-310`) |
 
 ## Workflow Examples
 
 ### Find genes in a pathway
+
 ```bash
 # List human pathways
 scripts/kegg_fetch.sh list pathway hsa
@@ -109,23 +110,27 @@ scripts/kegg_fetch.sh get hsa:10458
 ```
 
 ### Search compound and get structure
+
 ```bash
 scripts/kegg_fetch.sh find compound aspirin
 scripts/kegg_fetch.sh get C01405/mol
 ```
 
 ### Convert gene IDs to UniProt
+
 ```bash
 scripts/kegg_fetch.sh conv uniprot hsa:10458+hsa:150
 ```
 
 ### Check drug interactions
+
 ```bash
 scripts/kegg_fetch.sh ddi D00564
 scripts/kegg_fetch.sh ddi D00564+D00123
 ```
 
 ### Find diseases related to a drug
+
 ```bash
 scripts/kegg_fetch.sh link disease D00564
 ```

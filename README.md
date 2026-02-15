@@ -11,15 +11,15 @@ pathway, gene, compound, drug, disease, and reaction data.
 
 Supports all 7 KEGG REST API operations:
 
-| Operation | Purpose |
-|---|---|
-| `info` | Database release information |
-| `list` | List database entries |
-| `find` | Search by keywords or chemical properties |
-| `get` | Retrieve entries (flat file, sequences, structures, images) |
-| `conv` | Convert identifiers between KEGG and external databases |
-| `link` | Find cross-references between databases |
-| `ddi` | Drug-drug interaction lookup |
+| Operation | Purpose                                                     |
+| --------- | ----------------------------------------------------------- |
+| `info`    | Database release information                                |
+| `list`    | List database entries                                       |
+| `find`    | Search by keywords or chemical properties                   |
+| `get`     | Retrieve entries (flat file, sequences, structures, images) |
+| `conv`    | Convert identifiers between KEGG and external databases     |
+| `link`    | Find cross-references between databases                     |
+| `ddi`     | Drug-drug interaction lookup                                |
 
 ## Structure
 
