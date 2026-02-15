@@ -27,68 +27,68 @@ set -euo pipefail
 BASE_URL="https://rest.kegg.jp"
 
 usage() {
-  sed -n '2,/^[^#]/{ /^#/s/^# \{0,1\}//p; }' "$0"
+  sed -n '2,/^[^#]/{ /^#/s/^# \{0,1\}//p; }' "${0}"
   exit 1
 }
 
 # URL-encode a string (spaces become +, special chars become %XX)
 urlencode() {
-  python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1], safe=''))" "$1"
+  python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1], safe=''))" "${1}"
 }
 
-if [[ $# -lt 1 ]]; then
+if [[ ${#} -lt 1 ]]; then
   usage
 fi
 
-operation="$1"
+operation="${1}"
 shift
 
-case "$operation" in
+case "${operation}" in
   info)
-    [[ $# -lt 1 ]] && { echo "Error: info requires <database>" >&2; exit 1; }
-    url="${BASE_URL}/info/$1"
+    [[ ${#} -lt 1 ]] && { echo "Error: info requires <database>" >&2; exit 1; }
+    url="${BASE_URL}/info/${1}"
     ;;
   list)
-    [[ $# -lt 1 ]] && { echo "Error: list requires <database>" >&2; exit 1; }
-    url="${BASE_URL}/list/$1"
-    [[ $# -ge 2 ]] && url="${url}/$2"
+    [[ ${#} -lt 1 ]] && { echo "Error: list requires <database>" >&2; exit 1; }
+    url="${BASE_URL}/list/${1}"
+    [[ ${#} -ge 2 ]] && url="${url}/${2}"
     ;;
   find)
-    [[ $# -lt 2 ]] && { echo "Error: find requires <database> <query>" >&2; exit 1; }
-    encoded_query=$(urlencode "$2")
-    url="${BASE_URL}/find/$1/${encoded_query}"
-    [[ $# -ge 3 ]] && url="${url}/$3"
+    [[ ${#} -lt 2 ]] && { echo "Error: find requires <database> <query>" >&2; exit 1; }
+    encoded_query=$(urlencode "${2}")
+    url="${BASE_URL}/find/${1}/${encoded_query}"
+    [[ ${#} -ge 3 ]] && url="${url}/${3}"
     ;;
   get)
-    [[ $# -lt 1 ]] && { echo "Error: get requires <dbentries>" >&2; exit 1; }
-    url="${BASE_URL}/get/$1"
-    [[ $# -ge 2 ]] && url="${url}/$2"
+    [[ ${#} -lt 1 ]] && { echo "Error: get requires <dbentries>" >&2; exit 1; }
+    url="${BASE_URL}/get/${1}"
+    [[ ${#} -ge 2 ]] && url="${url}/${2}"
     ;;
   conv)
-    [[ $# -lt 2 ]] && { echo "Error: conv requires <target_db> <source>" >&2; exit 1; }
-    url="${BASE_URL}/conv/$1/$2"
-    [[ $# -ge 3 ]] && url="${url}/$3"
+    [[ ${#} -lt 2 ]] && { echo "Error: conv requires <target_db> <source>" >&2; exit 1; }
+    url="${BASE_URL}/conv/${1}/${2}"
+    [[ ${#} -ge 3 ]] && url="${url}/${3}"
     ;;
   link)
-    [[ $# -lt 2 ]] && { echo "Error: link requires <target_db> <source>" >&2; exit 1; }
-    url="${BASE_URL}/link/$1/$2"
-    [[ $# -ge 3 ]] && url="${url}/$3"
+    [[ ${#} -lt 2 ]] && { echo "Error: link requires <target_db> <source>" >&2; exit 1; }
+    url="${BASE_URL}/link/${1}/${2}"
+    [[ ${#} -ge 3 ]] && url="${url}/${3}"
     ;;
   ddi)
-    [[ $# -lt 1 ]] && { echo "Error: ddi requires <dbentries>" >&2; exit 1; }
-    url="${BASE_URL}/ddi/$1"
+    [[ ${#} -lt 1 ]] && { echo "Error: ddi requires <dbentries>" >&2; exit 1; }
+    url="${BASE_URL}/ddi/${1}"
     ;;
   *)
-    echo "Error: unknown operation '$operation'" >&2
+    echo "Error: unknown operation '${operation}'" >&2
     echo "Valid operations: info, list, find, get, conv, link, ddi" >&2
     exit 1
     ;;
 esac
 
 # Stream output directly to stdout to preserve binary data (e.g., PNG images)
-curl -sf --max-time 30 "$url" || {
-  status=$?
-  echo "Error: KEGG API request failed (curl exit code: $status)" >&2
-  echo "URL: $url" >&2
+curl -sf --max-time 30 "${url}" || {
+  status=${?}
+  echo "Error: KEGG API request failed (curl exit code: ${status})" >&2
+  echo "URL: ${url}" >&2
   exit 1
 }
