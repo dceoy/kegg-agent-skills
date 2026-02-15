@@ -31,6 +31,11 @@ usage() {
   exit 1
 }
 
+# URL-encode a string (spaces become +, special chars become %XX)
+urlencode() {
+  python3 -c "import urllib.parse, sys; print(urllib.parse.quote(sys.argv[1], safe=''))" "$1"
+}
+
 if [[ $# -lt 1 ]]; then
   usage
 fi
@@ -50,7 +55,8 @@ case "$operation" in
     ;;
   find)
     [[ $# -lt 2 ]] && { echo "Error: find requires <database> <query>" >&2; exit 1; }
-    url="${BASE_URL}/find/$1/$2"
+    encoded_query=$(urlencode "$2")
+    url="${BASE_URL}/find/$1/${encoded_query}"
     [[ $# -ge 3 ]] && url="${url}/$3"
     ;;
   get)
@@ -79,11 +85,10 @@ case "$operation" in
     ;;
 esac
 
-response=$(curl -sf --max-time 30 "$url") || {
+# Stream output directly to stdout to preserve binary data (e.g., PNG images)
+curl -sf --max-time 30 "$url" || {
   status=$?
   echo "Error: KEGG API request failed (curl exit code: $status)" >&2
   echo "URL: $url" >&2
   exit 1
 }
-
-echo "$response"
