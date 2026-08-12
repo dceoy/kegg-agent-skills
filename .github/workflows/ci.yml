@@ -12,6 +12,12 @@ on:
       - synchronize
       - reopened
 jobs:
+  markdown-lint:
+    if: >
+      github.event_name == 'push' || github.event_name == 'pull_request'
+    uses: dceoy/gha-for-devops/.github/workflows/markdown-lint.yml@main  # zizmor: ignore[unpinned-uses]
+    with:
+      search-path: .
   shell-lint:
     if: >
       github.event_name == 'push' || github.event_name == 'pull_request'
@@ -23,6 +29,8 @@ jobs:
   dependabot-auto-merge:
     if: >
       github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
+    needs:
+      - markdown-lint
     permissions:
       contents: write
       pull-requests: write
