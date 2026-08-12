@@ -23,7 +23,7 @@ Supports all 7 KEGG REST API operations:
 
 ## Structure
 
-```
+```text
 skills/
 └── kegg-api/
     ├── SKILL.md                   # Skill definition and instructions
