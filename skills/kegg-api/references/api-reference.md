@@ -78,7 +78,7 @@ Multiple entries: join with `+` (e.g., `hsa:10458+ece:Z5100`).
 
 ### 1. info -- Database Information
 
-```
+```text
 /info/<database>
 ```
 
@@ -86,7 +86,7 @@ Multiple entries: join with `+` (e.g., `hsa:10458+ece:Z5100`).
 
 Examples:
 
-```
+```text
 /info/kegg
 /info/pathway
 /info/hsa
@@ -95,7 +95,7 @@ Examples:
 
 ### 2. list -- Entry Listing
 
-```
+```text
 /list/<database>
 /list/<database>/<org>
 /list/<dbentries>
@@ -107,7 +107,7 @@ The special database name `organism` is allowed only in this operation.
 
 Examples:
 
-```
+```text
 /list/pathway
 /list/pathway/hsa
 /list/module/hsa
@@ -120,7 +120,7 @@ Examples:
 
 ### 3. find -- Search
 
-```
+```text
 /find/<database>/<query>
 /find/<database>/<query>/<option>
 ```
@@ -137,7 +137,7 @@ Note: `brite` is not supported.
 
 Examples:
 
-```
+```text
 /find/compound/sugar
 /find/compound/C7H10O5/formula
 /find/compound/174.05/exact_mass
@@ -149,7 +149,7 @@ Examples:
 
 ### 4. get -- Data Retrieval
 
-```
+```text
 /get/<dbentries>[/<option>]
 ```
 
@@ -171,7 +171,7 @@ Input limit: up to 10 entries. For `image`/`kgml`: 1 entry only.
 
 Examples:
 
-```
+```text
 /get/hsa:10458+ece:Z5100
 /get/hsa:10458/aaseq
 /get/hsa:10458/ntseq
@@ -187,7 +187,7 @@ Examples:
 
 ### 5. conv -- ID Conversion
 
-```
+```text
 /conv/<target_db>/<source_db>[/<option>]
 /conv/<target_db>/<dbentries>[/<option>]
 ```
@@ -200,7 +200,7 @@ Chemical identifiers: `compound | glycan | drug` ↔ `pubchem | chebi`
 
 Examples:
 
-```
+```text
 /conv/eco/ncbi-geneid
 /conv/ncbi-geneid/eco
 /conv/ncbi-proteinid/hsa:10458+ece:Z5100
@@ -213,7 +213,7 @@ Examples:
 
 ### 6. link -- Cross-references
 
-```
+```text
 /link/<target_db>/<source_db>[/<option>]
 /link/<target_db>/<dbentries>[/<option>]
 ```
@@ -224,7 +224,7 @@ Examples:
 
 Examples:
 
-```
+```text
 /link/pathway/hsa
 /link/pathway/hsa:10458+ece:Z5100
 /link/ko/hsa:10458
@@ -238,7 +238,7 @@ Examples:
 
 ### 7. ddi -- Drug-Drug Interaction
 
-```
+```text
 /ddi/<dbentries>
 ```
 
@@ -251,7 +251,7 @@ Contains CI (contraindication) and P (precaution) interactions.
 
 Examples:
 
-```
+```text
 /ddi/D00564
 /ddi/D00564+D00123
 ```
